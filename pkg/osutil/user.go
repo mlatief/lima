@@ -103,7 +103,7 @@ func LimaUser(warn bool) (*user.User, error) {
 		if cache.err == nil {
 			// `useradd` only allows user and group names matching the following pattern:
 			// (it allows a trailing '$', but it feels prudent to map those to the fallback user as well)
-			validName := "^[a-z_][a-z0-9_-]*$"
+			validName := "^[a-z_][a-z0-9._-]*$"
 			if !regexp.MustCompile(validName).Match([]byte(cache.u.Username)) {
 				warning := fmt.Sprintf("local user %q is not a valid Linux username (must match %q); using %q username instead",
 					cache.u.Username, validName, fallbackUser)
